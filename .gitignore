@@ -39,3 +39,6 @@ temp/
 .mvn
 mvnw.cmd
 mvnw
+
+*.js linguist-language=java
+*.html linguist-language=java
