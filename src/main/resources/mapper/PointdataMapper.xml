@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cqcfsw.databatch.mapper.PointdataMapper">
+  <resultMap id="BaseResultMap" type="com.cqcfsw.databatch.entity.Pointdata">
+    <!--@mbg.generated-->
+    <!--@Table tbl_pointdata-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="data" jdbcType="DOUBLE" property="data" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="maxData" jdbcType="DOUBLE" property="maxdata" />
+    <result column="minData" jdbcType="DOUBLE" property="mindata" />
+    <result column="pointId" jdbcType="INTEGER" property="pointid" />
+    <result column="pointepc" jdbcType="VARCHAR" property="pointepc" />
+    <result column="region" jdbcType="VARCHAR" property="region" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, `data`, `date`, description, maxData, minData, pointId, pointepc, region
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select
+    <include refid="Base_Column_List" />
+    from tbl_pointdata
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from tbl_pointdata
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.cqcfsw.databatch.entity.Pointdata" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tbl_pointdata (`data`, `date`, description,
+      maxData, minData, pointId,
+      pointepc, region)
+    values (#{data,jdbcType=DOUBLE}, #{date,jdbcType=TIMESTAMP}, #{description,jdbcType=VARCHAR},
+      #{maxdata,jdbcType=DOUBLE}, #{mindata,jdbcType=DOUBLE}, #{pointid,jdbcType=INTEGER},
+      #{pointepc,jdbcType=VARCHAR}, #{region,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.cqcfsw.databatch.entity.Pointdata" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tbl_pointdata
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="data != null">
+        `data`,
+      </if>
+      <if test="date != null">
+        `date`,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="maxdata != null">
+        maxData,
+      </if>
+      <if test="mindata != null">
+        minData,
+      </if>
+      <if test="pointid != null">
+        pointId,
+      </if>
+      <if test="pointepc != null">
+        pointepc,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="data != null">
+        #{data,jdbcType=DOUBLE},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="maxdata != null">
+        #{maxdata,jdbcType=DOUBLE},
+      </if>
+      <if test="mindata != null">
+        #{mindata,jdbcType=DOUBLE},
+      </if>
+      <if test="pointid != null">
+        #{pointid,jdbcType=INTEGER},
+      </if>
+      <if test="pointepc != null">
+        #{pointepc,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cqcfsw.databatch.entity.Pointdata">
+    <!--@mbg.generated-->
+    update tbl_pointdata
+    <set>
+      <if test="data != null">
+        `data` = #{data,jdbcType=DOUBLE},
+      </if>
+      <if test="date != null">
+        `date` = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="maxdata != null">
+        maxData = #{maxdata,jdbcType=DOUBLE},
+      </if>
+      <if test="mindata != null">
+        minData = #{mindata,jdbcType=DOUBLE},
+      </if>
+      <if test="pointid != null">
+        pointId = #{pointid,jdbcType=INTEGER},
+      </if>
+      <if test="pointepc != null">
+        pointepc = #{pointepc,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cqcfsw.databatch.entity.Pointdata">
+    <!--@mbg.generated-->
+    update tbl_pointdata
+    set `data` = #{data,jdbcType=DOUBLE},
+      `date` = #{date,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      maxData = #{maxdata,jdbcType=DOUBLE},
+      minData = #{mindata,jdbcType=DOUBLE},
+      pointId = #{pointid,jdbcType=INTEGER},
+      pointepc = #{pointepc,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateBatch" parameterType="java.util.List">
+    <!--@mbg.generated-->
+    update tbl_pointdata
+    <trim prefix="set" suffixOverrides=",">
+      <trim prefix="`data` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.data,jdbcType=DOUBLE}
+        </foreach>
+      </trim>
+      <trim prefix="`date` = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.date,jdbcType=TIMESTAMP}
+        </foreach>
+      </trim>
+      <trim prefix="description = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.description,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="maxData = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.maxdata,jdbcType=DOUBLE}
+        </foreach>
+      </trim>
+      <trim prefix="minData = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.mindata,jdbcType=DOUBLE}
+        </foreach>
+      </trim>
+      <trim prefix="pointId = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.pointid,jdbcType=INTEGER}
+        </foreach>
+      </trim>
+      <trim prefix="pointepc = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.pointepc,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+      <trim prefix="region = case" suffix="end,">
+        <foreach collection="list" index="index" item="item">
+          when id = #{item.id,jdbcType=INTEGER} then #{item.region,jdbcType=VARCHAR}
+        </foreach>
+      </trim>
+    </trim>
+    where id in
+    <foreach close=")" collection="list" item="item" open="(" separator=", ">
+      #{item.id,jdbcType=INTEGER}
+    </foreach>
+  </update>
+  <insert id="batchInsert" keyColumn="id" keyProperty="id" parameterType="map" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tbl_pointdata
+    (`data`, `date`, description, maxData, minData, pointId, pointepc, region)
+    values
+    <foreach collection="list" item="item" separator=",">
+      (#{item.data,jdbcType=DOUBLE}, #{item.date,jdbcType=TIMESTAMP}, #{item.description,jdbcType=VARCHAR},
+        #{item.maxdata,jdbcType=DOUBLE}, #{item.mindata,jdbcType=DOUBLE}, #{item.pointid,jdbcType=INTEGER},
+        #{item.pointepc,jdbcType=VARCHAR}, #{item.region,jdbcType=VARCHAR})
+    </foreach>
+  </insert>
+  <insert id="insertOrUpdate" keyColumn="id" keyProperty="id" parameterType="com.cqcfsw.databatch.entity.Pointdata" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tbl_pointdata
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      `data`,
+      `date`,
+      description,
+      maxData,
+      minData,
+      pointId,
+      pointepc,
+      region,
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      #{data,jdbcType=DOUBLE},
+      #{date,jdbcType=TIMESTAMP},
+      #{description,jdbcType=VARCHAR},
+      #{maxdata,jdbcType=DOUBLE},
+      #{mindata,jdbcType=DOUBLE},
+      #{pointid,jdbcType=INTEGER},
+      #{pointepc,jdbcType=VARCHAR},
+      #{region,jdbcType=VARCHAR},
+    </trim>
+    on duplicate key update
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      `data` = #{data,jdbcType=DOUBLE},
+      `date` = #{date,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      maxData = #{maxdata,jdbcType=DOUBLE},
+      minData = #{mindata,jdbcType=DOUBLE},
+      pointId = #{pointid,jdbcType=INTEGER},
+      pointepc = #{pointepc,jdbcType=VARCHAR},
+      region = #{region,jdbcType=VARCHAR},
+    </trim>
+  </insert>
+  <insert id="insertOrUpdateSelective" keyColumn="id" keyProperty="id" parameterType="com.cqcfsw.databatch.entity.Pointdata" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into tbl_pointdata
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="data != null">
+        `data`,
+      </if>
+      <if test="date != null">
+        `date`,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="maxdata != null">
+        maxData,
+      </if>
+      <if test="mindata != null">
+        minData,
+      </if>
+      <if test="pointid != null">
+        pointId,
+      </if>
+      <if test="pointepc != null">
+        pointepc,
+      </if>
+      <if test="region != null">
+        region,
+      </if>
+    </trim>
+    values
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="data != null">
+        #{data,jdbcType=DOUBLE},
+      </if>
+      <if test="date != null">
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="maxdata != null">
+        #{maxdata,jdbcType=DOUBLE},
+      </if>
+      <if test="mindata != null">
+        #{mindata,jdbcType=DOUBLE},
+      </if>
+      <if test="pointid != null">
+        #{pointid,jdbcType=INTEGER},
+      </if>
+      <if test="pointepc != null">
+        #{pointepc,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        #{region,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update
+    <trim suffixOverrides=",">
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="data != null">
+        `data` = #{data,jdbcType=DOUBLE},
+      </if>
+      <if test="date != null">
+        `date` = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="maxdata != null">
+        maxData = #{maxdata,jdbcType=DOUBLE},
+      </if>
+      <if test="mindata != null">
+        minData = #{mindata,jdbcType=DOUBLE},
+      </if>
+      <if test="pointid != null">
+        pointId = #{pointid,jdbcType=INTEGER},
+      </if>
+      <if test="pointepc != null">
+        pointepc = #{pointepc,jdbcType=VARCHAR},
+      </if>
+      <if test="region != null">
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="selectList"  resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tbl_pointdata
+    limit #{_pagesize} OFFSET #{_skiprows}
+    </select>
+
+</mapper>

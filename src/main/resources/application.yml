@@ -1,0 +1,68 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: ums-admin-provider
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    schema: classpath:/schema/base/schema-*.sql
+    initialization-mode: always
+    base:
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbcUrl: jdbc:mysql://127.0.0.1:3306/springbatch?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong&useSSL=false
+      username: root
+      password: cqu@2017
+      hikari:
+        minimum-idle: 5
+        idle-timeout: 600000
+        maximum-pool-size: 10
+        auto-commit: true
+        pool-name: MyHikariCP
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+    ds1:
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbcUrl: jdbc:mysql://127.0.0.1:3306/sharding_1?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong&useSSL=false
+      username: root
+      password: cqu@2017
+      hikari:
+        minimum-idle: 5
+        idle-timeout: 600000
+        maximum-pool-size: 10
+        auto-commit: true
+        pool-name: MyHikariCP1
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+    ds2:
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbcUrl: jdbc:mysql://127.0.0.1:3306/sharding_2?useUnicode=true&characterEncoding=utf-8&serverTimezone=Hongkong&useSSL=false
+      username: root
+      password: cqu@2017
+      hikari:
+        minimum-idle: 5
+        idle-timeout: 600000
+        maximum-pool-size: 10
+        auto-commit: true
+        pool-name: MyHikariCP2
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+  mvc:
+    view:
+      prefix: /page/
+      suffix: .html
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  batch:
+    job:
+      enabled: false
+mybatis:
+  type-aliases-package: com.cqcfsw.databatch.entity
+  mapper-locations: classpath:mapper/*.xml
